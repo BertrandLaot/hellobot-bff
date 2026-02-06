@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../hello-bot-plan"
+		},
+		{
+			"path": "../hellobot-dummy-webanalyse"
+		}
+	],
+	"settings": {}
+}

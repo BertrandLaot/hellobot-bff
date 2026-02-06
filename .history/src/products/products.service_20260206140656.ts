@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { BackendApiService } from '../backend-api/backend-api.service';
 import { ProductDto } from './dto/product.dto';
 import { ProductWithModulesDto, ModuleLightDto } from './dto/product-with-modules.dto';
-import { ProductLinksAndOnboardingDto } from './dto/product-links-onboarding.dto';
 
 @Injectable()
 export class ProductsService {
@@ -37,25 +36,6 @@ export class ProductsService {
       return {
         product,
         modules,
-      };
-    } catch (error) {
-      if (error.response?.status === 404) {
-        throw new NotFoundException(`Product with ID ${id} not found`);
-      }
-      throw error;
-    }
-  }
-
-  /**
-   * Récupère les liens et le module d'onboarding d'un produit
-   */
-  async findLinksAndOnboarding(id: string): Promise<ProductLinksAndOnboardingDto> {
-    try {
-      const product = await this.backendApiService.get<ProductDto>(`/products/${id}`);
-      
-      return {
-        links: product.links || [],
-        onboardingModule: product.onboardingModule,
       };
     } catch (error) {
       if (error.response?.status === 404) {
