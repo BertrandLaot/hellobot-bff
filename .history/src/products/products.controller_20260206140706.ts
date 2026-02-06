@@ -4,7 +4,6 @@ import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/product.dto';
 import { ProductWithModulesDto } from './dto/product-with-modules.dto';
-import { ProductLinksAndOnboardingDto } from './dto/product-links-onboarding.dto';
 
 @ApiTags('products')
 @Controller('products')
@@ -36,18 +35,5 @@ export class ProductsController {
   @ApiResponse({ status: 404, description: 'Produit non trouvé' })
   async findOneWithModules(@Param('id') id: string): Promise<ProductWithModulesDto> {
     return this.productsService.findOneWithModules(id);
-  }
-
-  @Get(':id/links-and-onboarding')
-  @ApiOperation({ summary: 'Récupère les liens et le module d\'onboarding d\'un produit' })
-  @ApiParam({ name: 'id', description: 'ID du produit', type: String })
-  @ApiResponse({ 
-    status: 200, 
-    description: 'Liens et onboarding récupérés avec succès', 
-    type: ProductLinksAndOnboardingDto 
-  })
-  @ApiResponse({ status: 404, description: 'Produit non trouvé' })
-  async findLinksAndOnboarding(@Param('id') id: string): Promise<ProductLinksAndOnboardingDto> {
-    return this.productsService.findLinksAndOnboarding(id);
   }
 }

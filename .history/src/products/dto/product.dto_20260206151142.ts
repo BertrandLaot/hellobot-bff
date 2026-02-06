@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsArray } from 'class-validator';
+import { IsString, IsOptional, IsArray, IsNumber, IsBoolean } from 'class-validator';
 import { LinkDto, OnboardingModuleLightDto } from './product-links-onboarding.dto';
 
 export class ProductDto {
