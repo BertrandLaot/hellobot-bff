@@ -1,0 +1,22 @@
+name: AAP Release Build
+run-name: 📦 Release · ${{ github.ref_name }}
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+# Permissions are fine-grained managed at Reusable Workflows/Jobs level
+permissions: write-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  hellobot-bff-build:
+    name: "hellobot-bff"
+    uses: adeo/github-aap/.github/workflows/reusable-component-nodejs-container-build.yaml@main
+    with:
+      configuration: .aap.rc/ci/config.yml

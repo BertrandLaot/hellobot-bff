@@ -1,0 +1,24 @@
+name: AAP Check
+run-name: 🧪 Tests · ${{ github.head_ref || github.ref_name }}
+
+on:
+  release:
+    types: [ published ]
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+  workflow_dispatch:
+
+# Permissions are fine-grained managed at Reusable Workflows/Jobs level
+permissions: write-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  hellobot-bff-check:
+    name: "hellobot-bff"
+    uses: adeo/github-aap/.github/workflows/reusable-component-nodejs-container-check.yaml@main
+    with:
+      configuration: .aap.rc/ci/config.yml
