@@ -1,6 +1,6 @@
 {
   "name": "hellobot-bff",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Backend For Frontend pour Developer Hub API",
   "author": "Bertrand",
   "private": true,
