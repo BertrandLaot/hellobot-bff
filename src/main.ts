@@ -2,9 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { HealthModule } from './health.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const healthApp = await NestFactory.create(HealthModule);
 
   // Validation globale
   app.useGlobalPipes(
@@ -27,10 +29,13 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 8080;
+  const healthPort = process.env.HEALTH_PORT || 8081;
   await app.listen(port);
+  await healthApp.listen(healthPort);
   console.log(`Application is running on: http://localhost:${port}`);
   console.log(`Swagger documentation: http://localhost:${port}/api`);
+  console.log(`Health check is running on: http://localhost:${healthPort}`);
 }
 
 bootstrap();

@@ -8,7 +8,6 @@ import { ModulesModule } from './modules/modules.module';
 import { UserModule } from './user/user.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ConfigModule as WidgetConfigModule } from './config/config.module';
-import { HealthModule } from './health.module';
 
 @Module({
   imports: [
@@ -26,8 +25,7 @@ import { HealthModule } from './health.module';
     ModulesModule,
     UserModule,
     CategoriesModule,
-    WidgetConfigModule,
-    HealthModule
+    WidgetConfigModule
   ],
 })
 export class AppModule {}

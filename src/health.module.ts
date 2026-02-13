@@ -9,8 +9,8 @@ class HealthController {
     return {
       status: 'ok',
       'running on': `${process.env.ENV}, ${process.env.BU_CODE}`,
-      'listening on': process.env.PORT,
-      'admin on': process.env.PORT,
+      'listening on': process.env.PORT || 8080,
+      'admin on': process.env.HEALTH_PORT || 8081,
     };
   }
 }
