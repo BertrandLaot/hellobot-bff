@@ -1,2 +1,0 @@
-## Specification techniques
-- Développement NestJS

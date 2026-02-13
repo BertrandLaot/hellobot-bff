@@ -25,7 +25,7 @@ import { ConfigModule as WidgetConfigModule } from './config/config.module';
     ModulesModule,
     UserModule,
     CategoriesModule,
-    WidgetConfigModule,
+    WidgetConfigModule
   ],
 })
 export class AppModule {}

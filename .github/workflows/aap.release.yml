@@ -1,0 +1,21 @@
+name: AAP Release
+run-name: 🏷️ Release notes
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+# Permissions are fine-grained managed at Reusable Workflows/Jobs level
+permissions: write-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  release:
+    name: Repository
+    uses: adeo/github-aap/.github/workflows/reusable-global-release.yaml@main

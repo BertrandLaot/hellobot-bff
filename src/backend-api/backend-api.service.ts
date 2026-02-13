@@ -8,6 +8,7 @@ import { AxiosRequestConfig } from 'axios';
 export class BackendApiService {
   private readonly baseUrl: string;
   private readonly bearerToken: string;
+  private readonly devPortalApiKey: string;
 
   constructor(
     private readonly httpService: HttpService,
@@ -15,12 +16,16 @@ export class BackendApiService {
   ) {
     this.baseUrl = this.configService.get<string>('BACKEND_API_URL');
     this.bearerToken = this.configService.get<string>('BACKEND_BEARER_TOKEN');
+    this.devPortalApiKey = this.configService.get<string>('DEVPORTAL_API_KEY');
 
     if (!this.baseUrl) {
       throw new Error('BACKEND_API_URL is not defined in environment variables');
     }
     if (!this.bearerToken) {
       throw new Error('BACKEND_BEARER_TOKEN is not defined in environment variables');
+    }
+    if (!this.devPortalApiKey) {
+      throw new Error('DEVPORTAL_API_KEY is not defined in environment variables');
     }
   }
 
@@ -31,6 +36,7 @@ export class BackendApiService {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = {
       Authorization: `Bearer ${this.bearerToken}`,
+      'x-gateway-apikey': this.devPortalApiKey,
       ...config?.headers,
     };
 
