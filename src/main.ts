@@ -3,8 +3,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HealthModule } from './health.module';
+import { loadVaultSecret } from '@adeo/fact--vault-configuration-agregator';
 
 async function bootstrap() {
+  const helloBotSecret = await loadVaultSecret('hellobot/backend', process.env.ENV);
+
+  process.env = {
+    ...process.env,
+    ...helloBotSecret,
+  };
+
   const app = await NestFactory.create(AppModule);
   const healthApp = await NestFactory.create(HealthModule);
 
