@@ -5,9 +5,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { BackendApiModule } from './backend-api/backend-api.module';
 import { ProductsModule } from './products/products.module';
 import { ModulesModule } from './modules/modules.module';
-import { UserModule } from './user/user.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ConfigModule as WidgetConfigModule } from './config/config.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -23,9 +23,9 @@ import { ConfigModule as WidgetConfigModule } from './config/config.module';
     BackendApiModule,
     ProductsModule,
     ModulesModule,
-    UserModule,
     CategoriesModule,
-    WidgetConfigModule
+    WidgetConfigModule,
+    AdminModule,
   ],
 })
 export class AppModule {}

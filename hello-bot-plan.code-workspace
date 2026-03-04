@@ -4,10 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "../hello-bot-plan"
+			"path": "../hellobot-dummy-webanalyse"
 		},
 		{
-			"path": "../hellobot-dummy-webanalyse"
+			"path": "../hellobot-widget"
 		}
 	],
 	"settings": {}
